@@ -4,7 +4,8 @@ Sample bot that wraps ChatGPT but makes responses use all-caps.
 
 """
 from typing import AsyncIterable
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Response
+from fastapi.responses import HTMLResponse
 from fastapi_poe import PoeBot
 from fastapi_poe.client import stream_request
 from fastapi_poe.types import (
@@ -24,7 +25,7 @@ class ChatGPTAllCapsBot(PoeBot):
 
 fastapi_app = FastAPI()
 
-@fastapi_app.get("/")
+@fastapi_app.get("/", response_class=HTMLResponse)
 def read_root():
     return """
     <form method="post">
