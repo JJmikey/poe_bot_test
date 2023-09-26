@@ -15,9 +15,12 @@ from fastapi_poe.types import (
     SettingsResponse,
 )
 
+# 您的訪問鍵
+access_key = "Yz8iDdVhBI5KscIHGIZvIXky504FBO8x"
+
 class ChatGPTAllCapsBot(PoeBot):
     async def get_response(self, query: QueryRequest) -> AsyncIterable[PartialResponse]:
-        async for msg in stream_request(query, "ChatGPT", query.access_key):
+        async for msg in stream_request(query, "ChatGPT", access_key):
             yield msg.model_copy(update={"text": msg.text.upper()})
 
     async def get_settings(self, setting: SettingsRequest) -> SettingsResponse:
