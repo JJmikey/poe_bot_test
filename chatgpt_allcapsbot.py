@@ -3,7 +3,7 @@
 Sample bot that wraps ChatGPT but makes responses use all-caps.
 
 """
-
+from typing import AsyncIterable
 from fastapi import FastAPI
 from fastapi_poe import PoeBot
 from fastapi_poe.client import stream_request
